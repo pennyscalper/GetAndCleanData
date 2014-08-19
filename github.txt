@@ -23,5 +23,8 @@ git merge clean_up //merging changes in clean_up into the master branch
 git branch -d clean_up //clean up the branch as done with the changes
 git push 
 
+###cloning a repository from githu
+git clone https://github.com/pennyscalper/GetAndCleanData.git
 
 git remote add origin1 https://github.com/pennyscalper/GetAndCleanData.git
+
