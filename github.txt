@@ -1,0 +1,27 @@
+###############################
+git config --global user.name "Your Name Here"   ///any name to whom credit all the future commits from the terminal or git
+git config --global user.email "your_email@youremail.com"   ///same email as used to create the github account
+
+git remote add origin https://github.com/try-git/try_git.git  ///adds an empty repo origin on github....we will now start pushing files to it
+															 ///but to push we need to tell that we are pushing to origin(remote) from master(default local branch name)
+git push -u origin master
+git pull origin master ///to check for changes on our GitHub repository from last commit
+git diff HEAD ////if there are some changes from last commit then this command will list it out..diff can also diff between the files already in 
+				///remote repo and the file that have been staged(before making a commit)..next command shows that
+git add octofamily/octodog.txt //added a new fil
+git diff --staged //changes from the current repo with staged
+git reset octofamily/octodog.txt //didnt like the changes so unstaging the change 
+git checkout -- octocat.txt ///get rid of changes in the file at local repo 	
+/////branching out 
+git branch clean_up
+git branch //will show two branches now..master the main branh and new branch clean_up
+git checkout clean_up ///switching to new branch
+git rm '*.txt' ///doing some clean ups before starting the work
+git commit -m "Remove all the cats"
+git checkout master  //switch back to master
+git merge clean_up //merging changes in clean_up into the master branch
+git branch -d clean_up //clean up the branch as done with the changes
+git push 
+
+
+git remote add origin1 https://github.com/pennyscalper/GetAndCleanData.git
