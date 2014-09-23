@@ -1,15 +1,31 @@
+
 ###############################
 git config --global user.name "Your Name Here"   ///any name to whom credit all the future commits from the terminal or git
 git config --global user.email "your_email@youremail.com"   ///same email as used to create the github account
 
-git remote add origin https://github.com/try-git/try_git.git  ///adds an empty repo origin on github....we will now start pushing files to it
+//for saving data from local repo to remote...first time
+//need to understand there are three directories
+//the remote repo on github, the local directory on desktop/laptop, and one staged directory through which all the syncing is done
+//commit command puts the local changes to the staged directory from where it will be synced to remote by "push"
+1) create a repository online on github
+2) create a local directory
+3) cd to that and git init
+4) git remote add origin https://github.com/pennyscalper/CPlusPlusPractice.git  ///links the current directory to the remote repo..we will now start pushing files to it
 															 ///but to push we need to tell that we are pushing to origin(remote) from master(default local branch name)
-git push -u origin master
-git pull origin master ///to check for changes on our GitHub repository from last commit
+5) git add . //add the files so that git can track them
+5.a) git status //will tell that files are ready to be committed if they are different from the local repo
+6) git commit -m "message" //commits the changes to the local repo 
+6.a) git status //will tell nothing to commit
+7) git push -u origin master //pushed to remote repo...and done!!
+
+8) git diff HEAD //if there's any diff between local and local staged
+9) git diff --staged //changes from the current repo with staged
+10) git pull origin master ///to check for changes on our GitHub repository from last commit...first commit local changes and then run it
+
 git diff HEAD ////if there are some changes from last commit then this command will list it out..diff can also diff between the files already in 
 				///remote repo and the file that have been staged(before making a commit)..next command shows that
 git add octofamily/octodog.txt //added a new fil
-git diff --staged //changes from the current repo with staged
+
 git reset octofamily/octodog.txt //didnt like the changes so unstaging the change 
 git checkout -- octocat.txt ///get rid of changes in the file at local repo 	
 /////branching out 
@@ -24,7 +40,6 @@ git branch -d clean_up //clean up the branch as done with the changes
 git push 
 
 ###cloning a repository from githu
+//cd path and just run the below
 git clone https://github.com/pennyscalper/GetAndCleanData.git
-
-git remote add origin1 https://github.com/pennyscalper/GetAndCleanData.git
 

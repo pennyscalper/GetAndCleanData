@@ -103,7 +103,8 @@ DT['a'] ##very fast
 ##using keys to facilitate join (merge in data frame)...again its very fast then usual data.frame merge
 DT1 <- data.table(x=c('a', 'a', 'b', 'dt1'), y=1:4)
 DT2 <- data.table(x=c('a', 'b', 'dt2'), z=5:7)
-setkey(DT1, x); setkey(DT2, x)
+DT3 = data.table(x = sample(c('a', 'b', 'a', 'b', 'dt2'), size = 10, replace = TRUE), u = rnorm(10))
+setkey(DT1, x); setkey(DT2, x); setkey(DT3, x)
 DT1["a"]; DT1["a",]; ##putputs column x == "a" rows
 ##for multiple cols keys DT1[J("a", "b", "c")]  ==> if key has three cols then this will output rows where col1 == "a" & col2 == "b" & col3 == "c"
 merge(DT1, DT2)
@@ -111,7 +112,7 @@ merge(DT1, DT2)
 ###J(join), CJ and SJ
 DT = CJ(x = letters[1:5], y = runif(3), z = c("aa", "bb")); ##A data.table is formed from the cross product of the vectors. For example, 10 ids, and 100 dates, CJ returns a 1000 row table containing all the dates for all the ids.
 DT[, x1:= sample(LETTERS, nrow(DT), replace = T)];
-DT[, .N, by=list(x, x1)]; DT[, mean(y), by=list(x, x1)]
+DT[, .N, by=list(x, x1)]; DT[, list(mean(y), median(y)), by=list(x, x1)]
 setkey(DT, x, x1);
 DT[J("d", "T")]; DT[.("b", "H")]; DT[list("b", "H")]; ##all outputs same and is very fast because keys are sorted and this runs the binary search 
 DT[x == "d" &  x1 == "T"]; ##using data.table badly and is as slow as data frame
@@ -177,13 +178,6 @@ DT[, d:=max(b), by="c"] # same result, but much faster, shorter and scales
 DT[, `:=`(minb = min(b),
 meanb = mean(b),
 bplusd = sum(b+d)), by=c%/%5]
-
-
-###Fast Grouping
-DT[,sum(v),by=x]
-###Compare
-ttt=system.time(tt <- tapply(DT$v,DT$x,sum)); ttt
-sss=system.time(ss <- DT[,sum(v),by=x]); sss
 
 ###Fast reading
 big_df <- data.frame(x=rnorm(1E6), y=rnorm(1E6))
